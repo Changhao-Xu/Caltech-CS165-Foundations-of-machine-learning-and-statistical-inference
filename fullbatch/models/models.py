@@ -16,18 +16,18 @@ def construct_model(cfg_model, channels, classes):
     """cfg_model templates can be found under config/model."""
 
     if 'resnet' in cfg_model.name.lower():
-        block, layers = resnet_depths_to_config(cfg_model.depth)
-        model = ResNet(block, layers, channels, classes, stem=cfg_model.stem, convolution_type=cfg_model.convolution,
-                       nonlin=cfg_model.nonlin_fn, norm=cfg_model.normalization,
-                       downsample=cfg_model.downsample, width_per_group=cfg_model.width,
-                       zero_init_residual=True if 'skip_residual' in cfg_model.initialization else False)
-        # block = PreActBlock
-        # layers = [2, 2, 2, 2]
+        # block, layers = resnet_depths_to_config(cfg_model.depth)
+        # model = ResNet(block, layers, channels, classes, stem=cfg_model.stem, convolution_type=cfg_model.convolution,
+        #                nonlin=cfg_model.nonlin_fn, norm=cfg_model.normalization,
+        #                downsample=cfg_model.downsample, width_per_group=cfg_model.width,
+        #                zero_init_residual=True if 'skip_residual' in cfg_model.initialization else False)
+        block = PreActBlock
+        layers = [2, 2, 2, 2]
 
-        # model = PreActResNet(block, layers, channels, classes, stem=cfg_model.stem, convolution_type=cfg_model.convolution,
-        #                      nonlin=cfg_model.nonlin_fn, norm=cfg_model.normalization,
-        #                      downsample=cfg_model.downsample, width_per_group=cfg_model.width,
-        #                      zero_init_residual=True if 'skip_residual' in cfg_model.initialization else False)
+        model = PreActResNet(block, layers, channels, classes, stem=cfg_model.stem, convolution_type=cfg_model.convolution,
+                             nonlin=cfg_model.nonlin_fn, norm=cfg_model.normalization,
+                             downsample=cfg_model.downsample, width_per_group=cfg_model.width,
+                             zero_init_residual=True if 'skip_residual' in cfg_model.initialization else False)
 
         #               block = PreActBlock, layers = num_blocks = [2,2,2,2],
         #               channels = 3, classes = 10,
