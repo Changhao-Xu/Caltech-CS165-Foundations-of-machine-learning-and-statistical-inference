@@ -1,0 +1,7 @@
+
+dist: False
+backend: nccl
+strategy: file_system
+world_size:
+rank:
+url:
